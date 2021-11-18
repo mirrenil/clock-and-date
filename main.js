@@ -11,6 +11,7 @@ function main() {
 
 /** Starts the time on the page */
 function startClock() {
+    renderClock();
     setInterval(renderClock, 1000);
 }
 
