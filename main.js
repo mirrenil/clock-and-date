@@ -15,11 +15,43 @@ function startClock() {
     setInterval(renderClock, 1000);
 }
 
-/** Updates the page with current time */
+/** Updates the page with current time and weekday */
 function renderClock() {
-    const h2 = document.getElementById('time');
-
     const date = new Date();
+
+    const timeElement = document.getElementById('time');
+    timeElement.innerHTML = getCurrectTimeString(date);
+
+    const weekdayElement = document.getElementById('weekday');
+    weekdayElement.innerHTML = getCurrentWeekday(date);
+
+}
+/**
+ * Takes a date returns the date
+ * @param {Date} date 
+ * @returns {string} 
+ */
+
+function getCurrentWeekday(date) {
+    const weekday = date.getDay();
+
+    switch (weekday) {
+        case 0: return 'Sunday';
+        case 1: return 'Monday';
+        case 2: return 'Tueday';
+        case 3: return 'Wednesday';
+        case 4: return 'Thursday';
+        case 5: return 'Friday';
+        case 6: return 'Saturday';
+        
+    }
+}
+/**
+ * Constructs the time string from a date, includes seconds.
+ * @param {Date} date 
+ * @returns {String} in format HH:mm:ss
+ */
+function getCurrectTimeString(date) {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
@@ -33,6 +65,5 @@ function renderClock() {
     if (seconds < 10) {
         seconds = "0" + seconds;
     } 
-
-    h2.innerHTML = hours + ":" + minutes + ":" + seconds;
+    return hours + ":" + minutes + ":" + seconds;
 }
